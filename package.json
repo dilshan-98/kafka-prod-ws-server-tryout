@@ -1,0 +1,22 @@
+{
+  "name": "kafka-prod-ws-server-tryout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dilshan-98/kafka-prod-ws-server-tryout.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dilshan-98/kafka-prod-ws-server-tryout/issues"
+  },
+  "homepage": "https://github.com/dilshan-98/kafka-prod-ws-server-tryout#readme",
+  "dependencies": {
+    "ws": "^8.11.0"
+  }
+}
