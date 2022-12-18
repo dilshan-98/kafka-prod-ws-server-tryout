@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-import { v4 as uuid } from 'uuid';
+const { v4: uuid } = require('uuid');
 
 const WS_PORT = 3001
 
