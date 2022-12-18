@@ -1,14 +1,19 @@
-const WebSocket = require('ws')
+const WebSocket = require('ws');
+import { v4 as uuid } from 'uuid';
 
 const WS_PORT = 3001
+
+const idMap = new Map();
 
 const wss = new WebSocket.Server({ port: WS_PORT }, () => {
   console.log(`Listening on PORT ${WS_PORT} for websockets`);
 })
 
 wss.on('connection', (ws, req) => {
+  ws.uuid = uuid();
+  idMap.set(ws.uuid, ws);
 
-  ws.send('Welcome to the websocket server!');
+  ws.send('Welcome to the websocket server!'+ws.uuid);
 
   console.log(req.url)
 
@@ -17,6 +22,7 @@ wss.on('connection', (ws, req) => {
   })
 
   ws.on('close', (e) => {
+    idMap.delete(ws.uuid);
     console.log('Websocket: KILLED');
   })
 })
