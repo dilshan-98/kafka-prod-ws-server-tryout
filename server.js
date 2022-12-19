@@ -48,7 +48,7 @@ wss.on("connection", async (ws, req) => {
 
   await createItem(ws.uuid, wsuuid)
     .then((data) => {
-      console.log(data.Attributes)
+      console.log(data)
     })
     .catch((err) => {
       console.error(err);
