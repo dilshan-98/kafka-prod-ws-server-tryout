@@ -46,14 +46,16 @@ wss.on("connection", async (ws, req) => {
   const checkId = await checkItem(ws.uuid);
   console.log(checkId.Item);
 
-  await createItem(ws.uuid, wsuuid)
-    .then((data) => {
-      console.log(data)
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  console.log(ws.uuid + " - done - " + wsuuid);
+  if (!checkId.Item) {
+    await createItem(ws.uuid, wsuuid)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    console.log(ws.uuid + " - done - " + wsuuid);
+  }
 
   ws.send(
     "Welcome to the websocket server! ws uuid: " + ws.uuid + " ws: " + ws
