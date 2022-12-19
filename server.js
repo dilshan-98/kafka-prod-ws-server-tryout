@@ -37,29 +37,26 @@ const wss = new WebSocket.Server({ port: WS_PORT }, () => {
 });
 
 wss.on("connection", async (ws, req) => {
-
   const wsuuid = uuid();
 
   ws.uuid = uuid();
-  
+
   idMap.set(ws.uuid, ws);
 
   const checkId = await checkItem(ws.uuid);
   console.log(checkId.Item);
 
-  if (!checkId.Item) {
-    await createItem(ws.uuid, wsuuid)
-      .then(() => {
-        callback(null, {
-          statusCode: 201,
-          body: "",
-        });
-      })
-      .catch((err) => {
-        console.error(err);
+  await createItem(ws.uuid, wsuuid)
+    .then(() => {
+      callback(null, {
+        statusCode: 201,
+        body: "",
       });
-    console.log(ws.uuid + " - done - "+ wsuuid);
-  }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  console.log(ws.uuid + " - done - " + wsuuid);
 
   ws.send(
     "Welcome to the websocket server! ws uuid: " + ws.uuid + " ws: " + ws
