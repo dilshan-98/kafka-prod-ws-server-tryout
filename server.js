@@ -48,7 +48,7 @@ wss.on("connection", async (ws, req) => {
   console.log(checkId.Item);
 
   if (!checkId.Item) {
-    await createItem(ws.uuid, ws)
+    await createItem(ws.uuid, wsuuid)
       .then(() => {
         callback(null, {
           statusCode: 201,
